@@ -1,0 +1,93 @@
+{% extends "base.html" %}
+
+{% block cuerpo %}
+
+    <div class="row"> <!-- la filas-->
+    <div class="col-sm-12 col-md-4 col-lg-4 xl-4"> <!-- Columna izquierda-->
+        <h1> Clientes </h1>
+        <div class="card"><!-- tarjeta-->
+        <div class="card-body">
+            <form action="/registrarCliente/" method="post"> {% csrf_token %}<!-- -->
+            <div class="form-group">
+                <input type="text" id="txtID_Cliente" name="txtID_Cliente" placeholder="ID_Cliente" class="form-control" minlenght="1" maxlenght="6" required><br>
+            </div>
+            <div class="form-group py-3">
+                <input type="text" id="txtNombre" name="txtNombre" placeholder="Nombre" class="form-control"  minlenght="1" maxlenght="100" required><br>
+            </div>
+            <div class="form-group py-3">
+                <input type="text" id="txtApellido" name="txtApellido" placeholder="Apellido" class="form-control"  minlenght="1" maxlenght="100" required><br>
+            </div>
+            <div class="form-group py-3">
+                <input type="text" id="txtCorreo" name="txtCorreo" placeholder="Correo" class="form-control" minlength="1" maxlength="100" required><br>
+            </div>
+            <div class="form-group py-3">
+                <input type="text" id="numTelefono" name="numTelefono" placeholder="Telefono" class="form-control"  minlenght="1" maxlenght="15" required><br>
+            </div>
+            <div class="form-group py-3">
+                <input type="text" id="txtDireccion" name="txtDireccion" placeholder="Direccion" class="form-control"  minlenght="1" maxlenght="100" required><br>
+            </div>
+            <div class="form-group py-3">
+                <input type="date" id="txtFechaRegistro" name="txtFechaRegistro" placeholder="Fecha de Registro" class="form-control" required><br>
+            </div>
+            <div class="form-group py-3">
+                <button type="submit" class="btn btn-dark"> Guardar Cliente </button><br>
+            </div>
+            </form>
+        </div>
+        </div><!-- tarjeta-->
+    </div><!-- Columna izquierda-->
+
+    <div class="col-sm-12 col-md-8 col-lg-8 xl-8"> <!-- Columna derecha -->
+        <h1> Listado De Clientes </h1>
+        <!-- La tabla -->
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">ID_Cliente </th>
+                <th scope="col">Nombre </th>
+                <th scope="col">Apellido </th>
+                <th scope="col">Email </th>
+                <th scope="col">Telefono </th>
+                <th scope="col">Direccion </th>
+                <th scope="col">Fecha_Registro </th>
+                <th> Opciones </th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for m in misclientes %}
+            <tr>
+                <td>
+                    {{forloop.counter}}
+                </td>
+                <td>
+                    {{m.ID_Cliente}}
+                </td>
+                <td>
+                    {{m.Nombre}}
+                </td>
+                <td>
+                    {{m.Apellido}}
+                </td>
+                <td>
+                    {{m.Correo}}
+                </td>
+                <td>
+                    {{m.Telefono}}
+                </td>
+                <td>
+                    {{m.Direccion}}
+                </td>
+                <td>
+                    {{m.Fecha_Registro}}
+                </td>
+                <td> <a href="seleccionarCliente/{{m.ID_Cliente}}" class="btn btn-info"> Editar </a> </td> <!--Falta-->
+                <td> <a href="borrarCliente/{{m.ID_Cliente}}" class="btn btn-danger"> Borrar </a> </td> <!--Falta-->
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+        <!-- La tabla -->
+    </div><!-- Columna derecha -->
+    </div>
+{% endblock %}
