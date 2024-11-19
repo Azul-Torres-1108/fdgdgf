@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+
+{% block cuerpo %}
+
+<div class="row"><!--fila en editar-->
+    <div class="col-md-4 offset-md-4">
+        <h2>Editar Productos</h2>
+        <!-- Tarjeta -->
+            <div class="card">
+                <div class="card-body">
+                <form action="/editarProductos/" method="POST"> {% csrf_token %}
+                    <!-- Campo de solo lectura para ID_Cliente -->
+                    <div class="form-group">
+                    <input type="text" id="txtID_Productos" name="txtID_Productos" class="form-control" 
+                            value="{{ Productos.ID_Productos }}" readonly><br>
+                    </div>
+                    <div class="form-group py-3">
+                    <input type="text" id="txtNombre" name="txtNombre" class="form-control" 
+                            value="{{ Productos.Nombre }}" minlength="1" maxlength="100" required><br>
+                    </div>
+                    <div class="form-group py-3">
+                    <input type="text" id="txtDescripcion" name="txtDescripcion" class="form-control" 
+                            value="{{ Productos.Descripcion }}" minlength="1" maxlength="100" required><br>
+                    </div>
+                    <div class="form-group py-3">
+                        <input type="text" id="txtPrecio" name="txtPrecio" class="form-control" 
+                            value="{{ Productos.Precio }}" minlength="1" maxlength="100" required><br>
+                    </div>
+                    <div class="form-group py-3">
+                        <input type="text" id="numCantidad" name="numCantidad" class="form-control" 
+                            value="{{ Productos.Cantidad }}" minlength="1" maxlength="15" required><br>
+                    </div>
+                    <div class="form-group py-3">
+                        <input type="text" id="txtCategoria" name="txtCategoria" class="form-control" 
+                            value="{{ Productos.Categoria }}" minlength="1" maxlength="100" required><br>
+                    </div>
+                    <div class="form-group py-3">
+                        <input type="date" id="txtFecha_añadido" name="txtFecha_añadido" class="form-control" 
+                            value="{{ Productos.Fecha_añadido|date:"Y-m-d" }}" required><br>
+                    </div>                
+                    <div class="form-group py-3">
+                    <button type="submit" class="btn btn-dark"> Guardar Productos</button><br>
+                    </div>
+                </form>
+                </div>
+            </div>
+        <!-- Tarjeta -->
+    </div>
+</div><!--fila en editar-->
+
+{% endblock %}

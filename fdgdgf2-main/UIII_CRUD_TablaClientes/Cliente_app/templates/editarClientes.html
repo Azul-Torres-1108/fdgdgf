@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+
+{% block cuerpo %}
+
+<div class="row"><!--fila en editar-->
+    <div class="col-md-4 offset-md-4">
+        <h2>Editar Cliente</h2>
+        <!-- Tarjeta -->
+        <div class="card">
+            <div class="card-body">
+              <form action="/editarCliente/" method="POST"> {% csrf_token %}
+                <!-- Campo de solo lectura para ID_Cliente -->
+                <div class="form-group">
+                  <input type="text" id="txtID_Cliente" name="txtID_Cliente" class="form-control" 
+                         value="{{ cliente.ID_Cliente }}" readonly><br>
+                </div>
+                <div class="form-group py-3">
+                  <input type="text" id="txtNombre" name="txtNombre" class="form-control" 
+                         value="{{ cliente.Nombre }}" minlength="1" maxlength="100" required><br>
+                </div>
+                <div class="form-group py-3">
+                  <input type="text" id="txtApellido" name="txtApellido" class="form-control" 
+                         value="{{ cliente.Apellido }}" minlength="1" maxlength="100" required><br>
+                </div>
+                <div class="form-group py-3">
+                    <input type="text" id="txtCorreo" name="txtCorreo" class="form-control" 
+                           value="{{ cliente.Correo }}" minlength="1" maxlength="100" required><br>
+                </div>
+                <div class="form-group py-3">
+                    <input type="text" id="numTelefono" name="numTelefono" class="form-control" 
+                           value="{{ cliente.Telefono }}" minlength="1" maxlength="15" required><br>
+                </div>
+                <div class="form-group py-3">
+                    <input type="text" id="txtDireccion" name="txtDireccion" class="form-control" 
+                           value="{{ cliente.Direccion }}" minlength="1" maxlength="100" required><br>
+                </div>
+                <div class="form-group py-3">
+                    <input type="date" id="txtFechaRegistro" name="txtFechaRegistro" class="form-control" 
+                           value="{{ cliente.Fecha_Registro|date:"Y-m-d" }}" required><br>
+                </div>                
+                <div class="form-group py-3">
+                  <button type="submit" class="btn btn-dark"> Guardar Cliente </button><br>
+                </div>
+              </form>
+            </div>
+          </div>
+        <!-- Tarjeta -->
+    </div>
+</div><!--fila en editar-->
+
+{% endblock %}
